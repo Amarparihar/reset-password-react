@@ -75,14 +75,14 @@ export default function Home() {
                 Remember password
               </label>
             </div>
-            <Link to="/profile">
+           
               <button
                 className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                 type="submit"
               >
                 Sign in
               </button>
-            </Link>
+           
             <div className="text-center">
               <Link to="/reset-pass">Forgot password?</Link>
             </div>
