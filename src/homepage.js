@@ -24,7 +24,7 @@ export default function Home() {
               setEmail("");
               setPassword("");
               await fetch(
-                "https://resetpasswordserver.herokuapp.com//auth/login",
+                "https://resetpasswordserver.herokuapp.com/auth/login",
                 {
                   method: "POST",
                   body: JSON.stringify({
