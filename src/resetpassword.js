@@ -13,7 +13,7 @@ export default function Reset() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              console.log(email);
+              
 
               setEmail("");
 
