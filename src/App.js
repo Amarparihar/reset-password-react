@@ -4,8 +4,7 @@ import Home from "./homepage";
 import{
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 }from "react-router-dom";
 import Register from "./register";
 import Reset from "./resetpassword";
@@ -27,7 +26,7 @@ function App() {
                   <Route path="/" component={Home} exact={true} />
                   <Route path="/register" component={Register} exact={true}/>
                   <Route path="/reset-pass" component={Reset} exact={true}/>
-                  <Redirect to="/update-password" component={Update} exact={true}/>
+                  <Route path="/update-password" component={Update} exact={true}/>
                   <Route path="/profile" component={Profile} exact={true}/>
                 </Switch>
               
@@ -37,14 +36,7 @@ function App() {
           </div>
         </div>       
       </div>
-      {/* <hr/>
-      <div classNameName="container-fluid mt-3">
-        <div classNameName="row">
-        <Switch>
-                
-        </Switch>
-        </div>
-      </div> */}
+     
       </Router>
     </>
   );
