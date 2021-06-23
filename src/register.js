@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -26,7 +28,7 @@ export default function Register() {
               setEmail("");
               setPassword("");
 
-              await fetch(
+              let response = await fetch(
                 "https://resetpasswordserver.herokuapp.com/auth/register",
                 {
                   method: "POST",
@@ -41,6 +43,13 @@ export default function Register() {
                   },
                 }
               );
+
+              let data = await response.json();
+              if(data.message==='user registered successfully'){
+                toast.success('user registered successfully')
+              }else{
+                toast.error('user already registered')
+              }
             }}
           >
             <div className="form-label-group">
@@ -104,6 +113,8 @@ export default function Register() {
           </form>
         </div>
       </div>
+
+      <ToastContainer />
     </>
   );
 }

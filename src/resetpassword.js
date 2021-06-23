@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Reset() {
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ export default function Reset() {
 
               setEmail("");
 
-              await fetch(
+              let response = await fetch(
                 "https://resetpasswordserver.herokuapp.com/auth/forgot-password",
                 {
                   method: "POST",
@@ -29,6 +31,12 @@ export default function Reset() {
                   },
                 }
               );
+              let data = await response.json();
+              if(data.message==='Insert valid email address'){
+                toast.error('Insert valid email address')
+              }else{
+                toast.info('we sent an email to you kindly check your mail.Thank you!')
+              }
             }}
           >
             <label>Enter valid Email:</label>
@@ -45,6 +53,7 @@ export default function Reset() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

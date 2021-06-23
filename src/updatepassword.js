@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Update() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
     <>
       <div className="row justify-content-center mt-5">
@@ -18,7 +22,7 @@ export default function Update() {
               setConfirmPassword("");
               setEmail("");
 
-              await fetch(
+              let response = await fetch(
                 "https://resetpasswordserver.herokuapp.com/auth/update-password",
                 {
                   method: "PUT",
@@ -32,6 +36,14 @@ export default function Update() {
                   },
                 }
               );
+              let data = await response.json();
+              if(data.message==='Password Updated'){
+                toast.success('Password Updated')
+              }else if(data.message==='Enter valid password'){
+                toast.warn('Enter valid password')
+              }else{
+                toast.error('Enter valid email address')
+              }
             }}
           >
             <label>Enter Your Email:</label>
@@ -67,6 +79,8 @@ export default function Update() {
           </form>
         </div>
       </div>
+
+      <ToastContainer />
     </>
   );
 }

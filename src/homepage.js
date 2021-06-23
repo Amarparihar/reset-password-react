@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -23,7 +25,7 @@ export default function Home() {
 
               setEmail("");
               setPassword("");
-              await fetch(
+              let response = await fetch(
                 "https://resetpasswordserver.herokuapp.com/auth/login",
                 {
                   method: "POST",
@@ -36,6 +38,14 @@ export default function Home() {
                   },
                 }
               );
+             let data = await response.json();
+                if(data.message==='Login Successfull'){
+                  toast.success('user login successfully')
+                }else if(data.message==='Invalid Creadentials'){
+                  toast.error('warning:Invalid Creadentials')
+                }else{
+                  toast.warn('opps...!user not registered')
+                }
             }}
           >
             <div className="form-label-group">
@@ -94,6 +104,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
