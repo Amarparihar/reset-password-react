@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   return (
     <>
@@ -41,6 +42,8 @@ export default function Home() {
              let data = await response.json();
                 if(data.message==='Login Successfull'){
                   toast.success('user login successfully')
+                  history.push('/profile');
+
                 }else if(data.message==='Invalid Creadentials'){
                   toast.error('warning:Invalid Creadentials')
                 }else{
@@ -85,14 +88,15 @@ export default function Home() {
                 Remember password
               </label>
             </div>
-           
+            
+            
               <button
                 className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                 type="submit"
               >
                 Sign in
               </button>
-           
+              
             <div className="text-center">
               <Link to="/reset-pass">Forgot password?</Link>
             </div>
