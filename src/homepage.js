@@ -42,7 +42,9 @@ export default function Home() {
              let data = await response.json();
                 if(data.message==='Login Successfull'){
                   toast.success('user login successfully')
-                  history.push('/profile');
+                  setTimeout(() => {
+                    history.push('/profile');
+                  }, 5000);
 
                 }else if(data.message==='Invalid Creadentials'){
                   toast.error('warning:Invalid Creadentials')

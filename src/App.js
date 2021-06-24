@@ -10,6 +10,7 @@ import Register from "./register";
 import Reset from "./resetpassword";
 import Update from "./updatepassword";
 import Profile from "./profile";
+import Welcomepage from "./welcomepage";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/reset-pass" component={Reset} exact={true}/>
                   <Route path="/update-password" component={Update} exact={true}/>
                   <Route path="/profile" component={Profile} exact={true}/>
+                  <Route path="/welcomepage" component={Welcomepage} exact={true}/>
                 </Switch>
               
               </div>

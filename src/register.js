@@ -1,4 +1,6 @@
-import { useState } from "react";
+import {  useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -7,6 +9,9 @@ export default function Register() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
+
 
   return (
     <>
@@ -47,8 +52,18 @@ export default function Register() {
               let data = await response.json();
               if(data.message==='user registered successfully'){
                 toast.success('user registered successfully')
+                setTimeout(() => {
+                  history.push('/welcomepage');
+                }, 5000);
+                
               }else{
-                toast.error('user already registered')
+                toast.error('user already registered');
+                
+                   setTimeout(() => {
+                    history.push('/');
+                  }, 5000);
+                
+                
               }
             }}
           >
@@ -98,11 +113,13 @@ export default function Register() {
                 id="inputPassword"
                 className="form-control"
                 placeholder="Password"
-                required
+                required 
+                minLength="4"
+                maxLength="8"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <label for="inputPassword">Password</label>
+              <label for="inputPassword">Password(character length should be 4 to 8 )</label>
             </div>
             <button
               className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
