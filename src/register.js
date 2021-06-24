@@ -119,7 +119,7 @@ export default function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <label for="inputPassword">Password(character length should be 4 to 8 )</label>
+              <label for="inputPassword">Password(length should be 4 to 8 )</label>
             </div>
             <button
               className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
